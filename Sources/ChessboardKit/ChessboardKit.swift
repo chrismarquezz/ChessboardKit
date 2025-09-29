@@ -634,7 +634,7 @@ private struct ChessPieceView: View {
         if let piece {
             let style = chessboardModel.pieceStyle
             let piecePrefix = piece.color == .white ? "w" : "b"
-            let pieceName = "\(piecePrefix)\(String(describing: piece).uppercased())"
+            let pieceName = "\(style)_\(piecePrefix)\(String(describing: piece).uppercased())"
             
             // Correctly use subdirectory for Swift Package resources
             if let url = Bundle.module.url(
