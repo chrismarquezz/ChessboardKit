@@ -640,7 +640,7 @@ private struct ChessPieceView: View {
             if let url = Bundle.module.url(
                 forResource: pieceName,
                 withExtension: "png",
-                subdirectory: "Assets/Pieces/\(style)"
+                subdirectory: "Pieces/\(style)"
             ) {
                 AsyncImage(url: url) { phase in
                     if let image = phase.image {
