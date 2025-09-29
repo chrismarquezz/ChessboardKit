@@ -633,26 +633,39 @@ private struct ChessPieceView: View {
     ZStack {
         if let piece {
             let style = chessboardModel.pieceStyle
-            let imageName = "\(style)/\(piece.color == PieceColor.white ? "w" : "b")\(String(describing: piece).uppercased())"
+            let piecePrefix = piece.color == .white ? "w" : "b"
+            let pieceName = "\(piecePrefix)\(String(describing: piece).uppercased())"
             
-            AsyncImage(url: Bundle.module.url(forResource: imageName, withExtension: "png")) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .scaleEffect(0.85)
-                        .contentShape(Rectangle())
-                } else if phase.error != nil {
-                    Text("\(piece)")
-                        .foregroundStyle(piece.color == PieceColor.white ? Color.white : Color.black)
-                        .font(.system(size: 18))
-                        .scaledToFit()
-                        .scaleEffect(0.85)
-                        .contentShape(Rectangle())
-                } else {
-                    ProgressView()
-                        .scaleEffect(0.85)
+            // Correctly use subdirectory for Swift Package resources
+            if let url = Bundle.module.url(
+                forResource: pieceName,
+                withExtension: "png",
+                subdirectory: "Assets/Pieces/\(style)"
+            ) {
+                AsyncImage(url: url) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(0.85)
+                            .contentShape(Rectangle())
+                    } else if phase.error != nil {
+                        Text("\(piece)")
+                            .foregroundStyle(piece.color == .white ? .white : .black)
+                            .font(.system(size: 18))
+                            .scaledToFit()
+                            .scaleEffect(0.85)
+                            .contentShape(Rectangle())
+                    } else {
+                        ProgressView()
+                            .scaleEffect(0.85)
+                    }
                 }
+            } else {
+                // Fallback if image not found
+                Text("Missing \(pieceName)")
+                    .foregroundStyle(piece.color == .white ? .white : .black)
+                    .font(.system(size: 18))
             }
         } else {
             Color.clear.contentShape(Rectangle())
