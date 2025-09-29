@@ -54,7 +54,7 @@ public class ChessboardModel {
     public var turn: PieceColor { game.position.state.turn }
     public var validateMoves: Bool = false
     public var allowOpponentMove = false
-    public var pieceStyle: String = "USCF"
+    public var pieceStyle: String = "uscf"
     
     public var inWaiting = false
     
@@ -81,7 +81,7 @@ public class ChessboardModel {
                 perspective: PieceColor = .white,
                 colorScheme: ChessboardColorScheme = .light,
                 allowOpponentMove: Bool = false,
-                pieceStyle: String = "USCF",
+                pieceStyle: String = "uscf",
     )
     {
         self.game = Game(position: FenSerialization.default.deserialize(fen: fen))
