@@ -80,8 +80,8 @@ public class ChessboardModel {
     public init(fen: String = EMPTY_FEN,
                 perspective: PieceColor = .white,
                 colorScheme: ChessboardColorScheme = .light,
-                allowOpponentMove: Bool = false
-                pieceStyle: String = "USCF"
+                allowOpponentMove: Bool = false,
+                pieceStyle: String = "USCF",
     )
     {
         self.game = Game(position: FenSerialization.default.deserialize(fen: fen))
