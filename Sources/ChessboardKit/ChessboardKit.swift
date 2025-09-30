@@ -636,11 +636,10 @@ private struct ChessPieceView: View {
             let piecePrefix = piece.color == .white ? "w" : "b"
             let pieceName = "\(style)_\(piecePrefix)\(String(describing: piece).uppercased())"
             
-            // Correctly use subdirectory for Swift Package resources
             if let url = Bundle.module.url(
                 forResource: pieceName,
                 withExtension: "png",
-                subdirectory: "Pieces/\(style)"
+                subdirectory: nil
             ) {
                 AsyncImage(url: url) { phase in
                     if let image = phase.image {
