@@ -17,7 +17,7 @@ let package = Package(
                 resources: [
                         .process("Assets/Pieces/uscf"),
                         .process("Assets/Pieces/pixel"),
-
+                        .process("Assets/Pieces/big-pixel"),
                 ])
     ],
     swiftLanguageModes: [.v5, .v6]
